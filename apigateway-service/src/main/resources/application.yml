@@ -11,18 +11,21 @@ eureka:
 spring:
   application:
     name: apigateway-service
-  cloud:
-    gateway:
-      routes:
-        - id : first-service
-          uri: http://localhost:8081/
-          predicates:
-            # path 설정을 아래와 같이 할 경우 연결되는 마이크로 서비스의 endPoint 에도 first-service 를 포함해야 하는 문제가 있음
-            # 해당 문제는 일단 넘어가고 추후 해결하도록 합니다.
-            # ex) localhost:8080/first-service/welcome -> localhost:8081/welcome (x), localhost:8081/first-service/welcome
-            # 위 문제를 일시적으로 해결하기 위해 redirect 되는 마이크로 서비스의 endPoint 에 first-service 를 포합하도록 수정합니다.
-            - Path=/first-service/**
-        - id: second-service
-          uri: http://localhost:8082/
-          predicates:
-            - Path=/second-service/**
+
+# 아래의 설정을 java Filter Config file 로 재 구현 하기 위해 잠시 주석 처리
+
+#  cloud:
+#    gateway:
+#      routes:
+#        - id : first-service
+#          uri: http://localhost:8081/
+#          predicates:
+#            # path 설정을 아래와 같이 할 경우 연결되는 마이크로 서비스의 endPoint 에도 first-service 를 포함해야 하는 문제가 있음
+#            # 해당 문제는 일단 넘어가고 추후 해결하도록 합니다.
+#            # ex) localhost:8080/first-service/welcome -> localhost:8081/welcome (x), localhost:8081/first-service/welcome
+#            # 위 문제를 일시적으로 해결하기 위해 redirect 되는 마이크로 서비스의 endPoint 에 first-service 를 포합하도록 수정합니다.
+#            - Path=/first-service/**
+#        - id: second-service
+#          uri: http://localhost:8082/
+#          predicates:
+#            - Path=/second-service/**
