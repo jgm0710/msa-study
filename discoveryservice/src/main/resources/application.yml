@@ -1,0 +1,12 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: discoveryservice  # 마이크로 서비스에서 해당 서비스를 식별할 수 있는 이름을 설정
+
+eureka:
+  client:
+    # 해당 프로젝트가 유레카 클라이언트로서 작동하지 않도록 설정
+    register-with-eureka: false
+    fetch-registry: false
