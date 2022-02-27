@@ -1,0 +1,28 @@
+server:
+  port: 8000
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: apigateway-service
+  cloud:
+    gateway:
+      routes:
+        - id : first-service
+          uri: http://localhost:8081/
+          predicates:
+            # path 설정을 아래와 같이 할 경우 연결되는 마이크로 서비스의 endPoint 에도 first-service 를 포함해야 하는 문제가 있음
+            # 해당 문제는 일단 넘어가고 추후 해결하도록 합니다.
+            # ex) localhost:8080/first-service/welcome -> localhost:8081/welcome (x), localhost:8081/first-service/welcome
+            # 위 문제를 일시적으로 해결하기 위해 redirect 되는 마이크로 서비스의 endPoint 에 first-service 를 포합하도록 수정합니다.
+            - Path=/first-service/**
+        - id: second-service
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/second-service/**
