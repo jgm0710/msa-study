@@ -13,6 +13,14 @@ spring:
     name: apigateway-service
   cloud:
     gateway:
+      # GlobalFilter 를 default filter 로 적용
+      default-filters:
+        - name: GlobalFilter
+          args:
+            # GlobalFilter.Config class 의 field properties 값을 여기서 설
+            baseMessage: Spring Cloud Gateway Global Filter
+            preLogger: true
+            postLogger: true
       routes:
         - id : first-service
           uri: http://localhost:8081/
