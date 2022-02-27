@@ -21,4 +21,9 @@ public class SecondServiceController {
         log.info("second-request : {}", header);
         return "Hello World in Second Service.";
     }
+
+    @GetMapping("/custom-filter")
+    public String customFilter() {
+        return "Hello this is Second Service custom filter";
+    }
 }

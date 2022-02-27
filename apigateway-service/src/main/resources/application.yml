@@ -23,12 +23,14 @@ spring:
             # 위 문제를 일시적으로 해결하기 위해 redirect 되는 마이크로 서비스의 endPoint 에 first-service 를 포합하도록 수정합니다.
             - Path=/first-service/**
           filters:
-            - AddRequestHeader=first-request, first-request-header2
-            - AddResponseHeader=first-response, first-resopnse-header2
+#            - AddRequestHeader=first-request, first-request-header2 # custom filter 를 적용하기 위해 주석 처리
+#            - AddResponseHeader=first-response, first-resopnse-header2
+            - CustomFilter
         - id: second-service
           uri: http://localhost:8082/
           predicates:
             - Path=/second-service/**
           filters:
-            - AddRequestHeader=second-request, second-request-header2
-            - AddResponseHeader=second-response, second-resopnse-header2
+#            - AddRequestHeader=second-request, second-request-header2
+#            - AddResponseHeader=second-response, second-resopnse-header2
+            - CustomFilter

@@ -21,4 +21,9 @@ public class FirstServiceController {
         log.info("first-request : {}", header);
         return "Hello World in First Service.";
     }
+
+    @GetMapping("/custom-filter")
+    public String customFilter() {
+        return "Hello this is First Service custom filter";
+    }
 }
